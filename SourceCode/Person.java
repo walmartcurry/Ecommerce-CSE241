@@ -3,7 +3,7 @@ import java.util.Date;
 public abstract class Person {
    protected String username;
     protected String password;
-    protected Date DOB;
+    protected LocalDate DOB;
 
 Person(){
    username=NULL;
@@ -13,7 +13,7 @@ Person(){
 Person(String user, String pass, int year, int month, int day){
    this.username=user;
    this.password=pass;
-   DOB = new Date(year,month,day);
+   DOB = new LocalDate.of(year,month,day);
 }
    
 }
