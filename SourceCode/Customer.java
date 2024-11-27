@@ -8,7 +8,7 @@ public class Customer extends Person implements View{
     }
 
     private int balance;
-private String address;
+    private String address;
     private ArrayList<Category> intrests;
     Gender gender;
     public int getBalance() {
@@ -46,6 +46,6 @@ private String address;
     public void view_by_category(){}
     public void view_all_products(){}
     public void view_by_supp(){}
-    public void finaliseOrder(){}
+    public void finaliseOrder(String paymentmethod){}
 
 }
