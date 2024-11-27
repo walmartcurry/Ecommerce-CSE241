@@ -29,21 +29,24 @@ public class Cart{
     public void AddToCart(Product ADD){
         cartItems.add(ADD);
     };
+    
     public void removeFromCart(Product Remove){
         cartItems.remove(Remove);
     };
+    
     public void IncreaseProd(Product inc){
         for (Product cartItem : cartItems) {
-            if (cartItem==inc){
+            if (cartItem==inc && cartItem.getQuantity()<cartItem.getStock()){
                 cartItem.setQuantity(cartItem.getQuantity()+1);
             }
         }
-    }; // Increases quantity of product using Product.increaseQuantity
+    };
+    // Increases quantity of product using Product.increaseQuantity
     public void DecreaseProd(Product dec){
         for (Product cartItem : cartItems) {
-            if (cartItem==dec){
+            if (cartItem==dec && cartItem.getQuantity()!=0){
                 cartItem.setQuantity(cartItem.getQuantity()-1);
             }
+            
         }
     }; // Decreases quantity of product using Product.decreaseQuantity
-}
