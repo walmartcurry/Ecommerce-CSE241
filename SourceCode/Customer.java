@@ -46,5 +46,6 @@ private String address;
     public void view_by_category(){}
     public void view_all_products(){}
     public void view_by_supp(){}
+    public void finaliseOrder(){}
 
 }
