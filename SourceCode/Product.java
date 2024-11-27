@@ -1,5 +1,6 @@
 public class Product {
     private String name;
+    private int quantity;
     private Category mycat;
     private double price;
     Product(){} // Set defualt to "NULL" and 0.0 and "Other"
