@@ -17,8 +17,7 @@ public class Order
         PENDING,
         PAID,
         SHIPPED,
-        DELIVERED,
-        CANCELED
+        CANCELED,
     }
     private paymentMethods paymentMethod;
     private Cart myCart;
