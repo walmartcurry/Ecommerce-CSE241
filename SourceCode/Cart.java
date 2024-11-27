@@ -10,7 +10,10 @@ public class Cart{
     public void viewcart(){};
     public void AddToCart(){};//7aneb2a n4oof
     public void removeFromCart(){}; //7aneb2a n4oof
+    public void IncreaseProd(){};
+    public void DecreaseProd(){};
 
+    
 
 
 
