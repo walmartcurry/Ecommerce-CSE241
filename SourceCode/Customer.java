@@ -44,7 +44,6 @@ private String address;
     public void add_to_cart(Product ADD){}
     public void remove_from_cart(){}
     public void view_by_category(){}
-    public void view_by_name(){}
     public void view_all_products(){}
     public void view_by_supp(){}
 
