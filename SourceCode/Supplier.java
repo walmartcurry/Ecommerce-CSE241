@@ -2,6 +2,7 @@ import java.util.ArrayList;
 public class Supplier implements View {
     protected String username;
     protected String password;
+     protected String COMM_NAME;
     ArrayList<Product> products;
     
 
