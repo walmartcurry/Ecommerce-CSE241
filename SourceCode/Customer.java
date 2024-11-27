@@ -42,7 +42,7 @@ public class Customer extends Person implements View{
     }
 
     public void add_to_cart(Product ADD){}
-    public void remove_from_cart(){}
+    public void remove_from_cart(Product Remove){}
     public void view_by_category(){}
     public void view_all_products(){}
     public void view_by_supp(){}
