@@ -23,4 +23,6 @@ public class Supplier implements View {
     public void  view_by_category(){}
     public  void view_all_products(){}
     public void add_product(Product ADD){}
+    public void increaseStock(){};
+    public void checkStock(){};
 }
