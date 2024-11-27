@@ -2,3 +2,4 @@ Admin requesting more supply from the supplier.
 Discounts, Promocodes...etc.
 Dynamically changing interests.
 Supplier limiting product quantity.
+Names: -StackShop
