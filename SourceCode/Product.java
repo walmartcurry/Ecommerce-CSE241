@@ -10,7 +10,8 @@ public class Product {
     public void setPrice(double price) {}
     public String getName() {}
     public double getPrice() {}
-    public void increaseStock(){};
+    public void increaseStock(){}; 
+    public void increaseQuantity(){}; // Increases quantity while it's less than stock
     
 
 }
