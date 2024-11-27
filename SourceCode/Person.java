@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.util.LocalDate;
 
 public abstract class Person {
    protected String username;
