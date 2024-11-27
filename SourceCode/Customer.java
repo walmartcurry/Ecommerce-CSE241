@@ -32,7 +32,7 @@ private String address;
     }
 
     public void addIntrests(Category c) {
-        intrests.add(c);
+       
     }
 
 
