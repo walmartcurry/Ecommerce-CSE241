@@ -9,7 +9,7 @@ public class Customer extends Person implements View{
 
     private int balance;
 private String address;
-    private ArrayList<Category> intrests = new ArrayList<>();
+    private ArrayList<Category> intrests;
     Gender gender;
     public int getBalance() {
         return balance;
