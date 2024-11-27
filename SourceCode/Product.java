@@ -1,5 +1,6 @@
-public class Product extends Category{
+public class Product {
     private String name;
+    private Category mycat;
     private double price;
     Product(){} // Set defualt to "NULL" and 0.0 and "Other"
     Product(String name , double price, String category){}
