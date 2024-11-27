@@ -10,5 +10,7 @@ public class Product {
     public void setPrice(double price) {}
     public String getName() {}
     public double getPrice() {}
+    public void increaseStock(){};
+    
 
 }
