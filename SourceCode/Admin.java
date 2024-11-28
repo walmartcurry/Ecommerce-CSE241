@@ -39,9 +39,10 @@ public class Admin extends Person
     public void setWorking_hours(String working_hours) {
         this.working_hours = working_hours;
     }
-    public void add_supplier(Supplier new_sup){
+    public void add_supplier(String username,String password,String compName){
+        Supplier new_sup=new Supplier( username, password,compName);
         Database.suppliers.add(new_sup);
-        System.out.println(new_sup.COMM_NAME +"  has been added :)");
+        System.out.println(new_sup.getcompName() +"  has been added :)");
     }
     public void view_products(){
         System.out.println("ALL PRODUCTS:");
@@ -52,12 +53,9 @@ public class Admin extends Person
         for(int i=0;i<Database.suppliers.size();i++)
         {
             Supplier supplier = Database.suppliers.get(i);
-            System.out.println("*"+supplier.COMM_NAME+": ");
-            if ( supplier.SUPP_PROD.length > 0) {
-                for (int j = 0; j < supplier.SUPP_PROD.length; j++) {
-                    int count = j + 1;
-                    System.out.println(count + "-" + supplier.SUPP_PROD[j].getName()+" Price:"+supplier.SUPP_PROD[j].getPrice());
-                }
+            System.out.println("*"+supplier.getcompName()+": ");
+            if ( supplier.getProducts().size() > 0) {
+                supplier.viewAllProducts();
             } else {
                 System.out.println("No products available");
             }
@@ -76,7 +74,7 @@ public class Admin extends Person
         {
             Supplier supplier = Database.suppliers.get(i);
             int count=i+1;
-            System.out.println(count + "-"+ supplier.COMM_NAME);
+            System.out.println(count + "-"+ supplier.getcompName());
 
         }
     }
