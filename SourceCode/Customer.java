@@ -1,16 +1,28 @@
 
 import java.util.ArrayList;
-
-
 public class Customer extends Person implements View{
     public enum Gender {
-        male, female;
+        male, female , NULL;
     }
-
     private int balance;
     private String address;
     private ArrayList<Category> intrests;
     Gender gender;
+    Order order;
+    Customer(String username , String password , int year , int month , int day ,String gender , String address)
+    {
+        super(username,password,year,month,day);
+        this.address = address;
+        this.gender = Gender.valueOf(gender.toLowerCase());
+        order = new Order();
+    }
+    Customer(){
+        super();
+        this.address = "NULL";
+        gender = Gender.valueOf("NULL");
+        order = new Order();
+
+    }
     public int getBalance() {
         return balance;
     }
@@ -31,21 +43,76 @@ public class Customer extends Person implements View{
         return intrests;
     }
 
-    public void addIntrests(Category c) {
-       
+    public void addIntrests(String category){
+        if(Category.checkValidity(category)){
+            for (Category cat : intrests) {
+                if(category.toLowerCase() == cat.gettype().toLowerCase()){
+                    System.out.println("This Category is already added to your intrests");
+                    return;
+                }
+                intrests.add(new Category(category));
+                System.out.println(category +" Added to intrests");
+            }
+        }
+        else
+        System.out.println("Category you entered does not exist in our store");
     }
-
-
 
     public Gender getGender() {
         return gender;
     }
 
-    public void add_to_cart(Product ADD){}
-    public void remove_from_cart(Product Remove){}
-    public void view_by_category(){}
-    public void view_all_products(){}
-    public void view_by_supp(){}
-    public void finaliseOrder(String paymentmethod){}
+    public void add_to_cart(SupplierProduct Add){
+        for(CustomerProduct product : (order.getMyCart()).cartItems){
+            if(Add.getName() == product.getName()){
+                product.setQuantity(product.getQuantity()+1);
+                return;
+            }
+        }
+        order.getMyCart().AddToCart(new CustomerProduct(Add.getName(),Add.getPrice() ,Add.mycat.gettype(),Add.getSupplier()));
+        System.out.println("Item added to cart");
+    }
+    public void remove_from_cart(Product Remove){
+        for(CustomerProduct product : (order.getMyCart()).cartItems){
+            if(Remove.getName() == product.getName()){
+                order.getMyCart().removeFromCart(Remove);
+                System.out.println("Item has been removed");
+            }
+            System.out.println("Item not in cart");
+            return;
+        }
+    }
+    public void view_by_category(Category category){
+        for(Supplier supplier : Database.suppliers){
+            supplier.viewByCategory(category);
+        }
+    }
+    public void view_all_products(){
+        for(Supplier supplier : Database.suppliers){
+            supplier.viewAllProducts();
+        }
+
+    }
+    public void view_by_supp(Supplier enteredSupplier){
+        for(Supplier supplier : Database.suppliers){
+            if(supplier == enteredSupplier){
+            supplier.viewAllProducts();
+            return;
+            }
+        }
+    }
+    public void finaliseOrder(String paymentmethod){
+        if(paymentmethod.toLowerCase() == "cash"){
+            order.payByCash();
+        }
+        else if(paymentmethod.toLowerCase() == "balance"){
+            order.payByBalance(balance);
+        }
+        else{
+            System.out.println("Invalid payment method");
+            return;
+        }
+        order.finalizeOrder();
+    }
 
 }
