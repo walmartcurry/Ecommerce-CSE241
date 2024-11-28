@@ -1,0 +1,86 @@
+<svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Modern commercial gradient -->
+    <linearGradient id="commercialGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563EB" />
+      <stop offset="100%" style="stop-color:#1E40AF" />
+    </linearGradient>
+    
+    <!-- Secondary gradient -->
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6" />
+      <stop offset="100%" style="stop-color:#60A5FA" />
+    </linearGradient>
+  </defs>
+
+  <!-- Shopping bag icon -->
+  <g transform="translate(95, 25)">
+    <!-- Bag handle -->
+    <path d="M30 10 C30 0, 70 0, 70 10" 
+          stroke="url(#commercialGradient)" 
+          stroke-width="6" 
+          fill="none" 
+          stroke-linecap="round">
+      <animate attributeName="d" 
+               dur="3s" 
+               repeatCount="indefinite" 
+               values="M30 10 C30 0, 70 0, 70 10;
+                       M30 8 C30 -2, 70 -2, 70 8;
+                       M30 10 C30 0, 70 0, 70 10"/>
+    </path>
+    
+    <!-- Bag body -->
+    <path d="M20 10 L80 10 L75 60 L25 60 Z" 
+          fill="url(#commercialGradient)">
+      <animate attributeName="d" 
+               dur="3s" 
+               repeatCount="indefinite" 
+               values="M20 10 L80 10 L75 60 L25 60 Z;
+                       M22 10 L78 10 L73 60 L27 60 Z;
+                       M20 10 L80 10 L75 60 L25 60 Z"/>
+    </path>
+
+    <!-- Stacked items in bag -->
+    <rect x="30" y="20" width="40" height="8" fill="#60A5FA" opacity="0.3"/>
+    <rect x="30" y="30" width="40" height="8" fill="#60A5FA" opacity="0.4"/>
+    <rect x="30" y="40" width="40" height="8" fill="#60A5FA" opacity="0.5"/>
+  </g>
+
+  <!-- Brand text -->
+  <g transform="translate(150, 100)">
+    <text x="0" y="-10" 
+          font-family="Arial, sans-serif" 
+          font-weight="900" 
+          font-size="36" 
+          fill="url(#commercialGradient)" 
+          text-anchor="middle"
+          letter-spacing="1">
+      STACKSHOP
+      <animate attributeName="font-size"
+               dur="3s"
+               repeatCount="indefinite"
+               values="36;37;36"/>
+    </text>
+  </g>
+
+  <!-- Tagline -->
+  <text x="150" y="110" 
+        font-family="Arial, sans-serif" 
+        font-size="12" 
+        fill="#3B82F6" 
+        text-anchor="middle"
+        letter-spacing="2">
+    EVERYTHING YOU NEED
+  </text>
+
+  <!-- Dynamic dots -->
+  <circle cx="240" cy="35" r="3" fill="url(#accentGradient)">
+    <animate attributeName="r" dur="2s" repeatCount="indefinite" values="3;4;3"/>
+  </circle>
+  <circle cx="255" cy="35" r="3" fill="url(#accentGradient)">
+    <animate attributeName="r" dur="2s" repeatCount="indefinite" values="3;4;3" begin="0.3s"/>
+  </circle>
+  <circle cx="270" cy="35" r="3" fill="url(#accentGradient)">
+    <animate attributeName="r" dur="2s" repeatCount="indefinite" values="3;4;3" begin="0.6s"/>
+  </circle>
+</svg>
