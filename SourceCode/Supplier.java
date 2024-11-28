@@ -2,9 +2,13 @@ import java.util.ArrayList;
 public class Supplier implements View {
     private String username;
     private String password;
-    private String COMM_NAME;
-    ArrayList<SupplierProduct> products;
-    
+    private String compName;
+    private ArrayList<SupplierProduct> products;
+    Supplier(String username , String password , String compName){
+        this.username = username;
+        this.password = password;
+        this.compName = compName;
+    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -20,6 +24,12 @@ public class Supplier implements View {
 
     public String getPassword() {
         return password;
+    }
+    public ArrayList<SupplierProduct> getProducts() {
+        return products;
+    }
+    public String getCOMM_NAME() {
+        return compName;
     }
     public void  viewByCategory(Category category){
         for(SupplierProduct product : products){
@@ -37,5 +47,7 @@ public class Supplier implements View {
     public void add_product(SupplierProduct ADD){
         products.add(ADD);
     }
+   
+}
    
 }
