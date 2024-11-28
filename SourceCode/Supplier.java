@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 public class Supplier implements View {
-    protected String username;
-    protected String password;
-     protected String COMM_NAME;
-    ArrayList<Product> products;
+    private String username;
+    private String password;
+    private String COMM_NAME;
+    ArrayList<SupplierProduct> products;
     
 
     public void setUsername(String username) {
@@ -21,8 +21,21 @@ public class Supplier implements View {
     public String getPassword() {
         return password;
     }
-    public void  view_by_category(){}
-    public  void view_all_products(){}
-    public void add_product(Product ADD){}
+    public void  viewByCategory(Category category){
+        for(SupplierProduct product : products){
+            if(product.getMycat().toLowerCase() == category.gettype().toLowerCase()){
+                product.viewProduct();
+            }
+
+        }
+    }
+    public  void viewAllProducts(){
+        for(SupplierProduct product : products){
+                product.viewProduct();
+        }
+    }
+    public void add_product(SupplierProduct ADD){
+        products.add(ADD);
+    }
    
 }
