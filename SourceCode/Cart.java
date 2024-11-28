@@ -2,16 +2,16 @@ import java.util.ArrayList;
 
 public class Cart{
 
-    ArrayList<Product> cartItems;
+    ArrayList<CustomerProduct> cartItems;
     private double totalPrice;
 
     Cart(){
         totalPrice = 0;
-        cartItems = new ArrayList<Product>();
+        cartItems = new ArrayList<CustomerProduct>();
     }
 
     public void calcTotalPrice(){
-        for (Product cartItem : cartItems) {
+        for (CustomerProduct cartItem : cartItems) {
             this.totalPrice += cartItem.getPrice();
         }
     }
@@ -21,32 +21,37 @@ public class Cart{
     }
 
     public void viewcart(){
-        for (Product cartItem : cartItems) {
-            System.out.println(cartItem.getName());
+        for (CustomerProduct cartItem : cartItems) {
+            cartItem.viewProduct();
         }
     };
 
-    public void AddToCart(Product ADD){
+    public void AddToCart(CustomerProduct ADD){
         cartItems.add(ADD);
     };
-    
-    public void removeFromCart(Product Remove){
+    public void removeFromCart(CustomerProduct Remove){
         cartItems.remove(Remove);
     };
-    
-    public void IncreaseProd(Product inc){
-        for (Product cartItem : cartItems) {
-            if (cartItem==inc && cartItem.getQuantity()<cartItem.getStock()){
+    public void IncreaseProd(CustomerProduct inc){
+        for (CustomerProduct cartItem : cartItems) {
+            if (cartItem==inc && cartItem.getQuantity()<cartItem.getSupplierProd().getStock()){
                 cartItem.setQuantity(cartItem.getQuantity()+1);
             }
         }
-    };
-    // Increases quantity of product using Product.increaseQuantity
-    public void DecreaseProd(Product dec){
-        for (Product cartItem : cartItems) {
+    }; // Increases quantity of product using Product.increaseQuantity
+    public void DecreaseProd(CustomerProduct dec){
+        for (CustomerProduct cartItem : cartItems) {
             if (cartItem==dec && cartItem.getQuantity()!=0){
                 cartItem.setQuantity(cartItem.getQuantity()-1);
             }
-            
+
         }
     }; // Decreases quantity of product using Product.decreaseQuantity
+
+
+
+
+
+
+
+}
