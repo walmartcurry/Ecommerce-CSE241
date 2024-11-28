@@ -33,6 +33,7 @@ public abstract class Product {
     public String getMycat() {
         return mycat.gettype();
     }
+    public abstract void viewProduct();
 }
 
 
