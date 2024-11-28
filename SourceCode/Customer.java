@@ -1,5 +1,5 @@
-
 import java.util.ArrayList;
+import java.util.HashMap;
 public class Customer extends Person implements View{
     public enum Gender {
         male, female , NULL;
@@ -69,7 +69,7 @@ public class Customer extends Person implements View{
                 return;
             }
         }
-        order.getMyCart().AddToCart(new CustomerProduct(Add.getName(),Add.getPrice() ,Add.mycat.gettype(),Add.getSupplier()));
+        order.getMyCart().AddToCart(new CustomerProduct(Add));
         System.out.println("Item added to cart");
     }
     public void remove_from_cart(Product Remove){
@@ -82,10 +82,12 @@ public class Customer extends Person implements View{
             return;
         }
     }
-    public void view_by_category(Category category){
+    public void viewByCategory(Category category){
+
         for(Supplier supplier : Database.suppliers){
             supplier.viewByCategory(category);
         }
+
     }
     public void view_all_products(){
         for(Supplier supplier : Database.suppliers){
@@ -114,5 +116,12 @@ public class Customer extends Person implements View{
         }
         order.finalizeOrder();
     }
+    public void selectProduct(int index){
+
+    }
+    
 
 }
+
+
+
