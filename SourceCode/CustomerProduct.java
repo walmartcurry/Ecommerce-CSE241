@@ -1,9 +1,9 @@
 public class CustomerProduct extends Product {
     private int quantity = 1;
-    private Supplier supplier;
-    CustomerProduct(String name , double price , String category , Supplier supplier){
-        super(name,price,category);
-        this.supplier = supplier;
+    private SupplierProduct supplierProd;
+    CustomerProduct(SupplierProduct newProd){
+        super(newProd.name,newProd.price,newProd.getMycat());
+        this.supplierProd = newProd;
     }
     public void setQuantity(int quantity) {
         this.quantity = quantity;
@@ -11,9 +11,9 @@ public class CustomerProduct extends Product {
     public int getQuantity() {
         return quantity;
     }
-    public Supplier getSupplier() {
-        return supplier;
-    }
+   public SupplierProduct getSupplierProd() {
+       return supplierProd;
+   }
     @Override
     public void viewProduct(){
         System.out.println("Product Name :" + name);
