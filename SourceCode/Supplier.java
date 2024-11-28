@@ -28,7 +28,7 @@ public class Supplier implements View {
     public ArrayList<SupplierProduct> getProducts() {
         return products;
     }
-    public String getCOMM_NAME() {
+    public String getcompName() {
         return compName;
     }
     public void  viewByCategory(Category category){
