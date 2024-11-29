@@ -3,3 +3,4 @@ Discounts, Promocodes...etc.
 Dynamically changing interests.
 Supplier limiting product quantity.
 Names: -StackShop
+Add password validations (Strong password)
