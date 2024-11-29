@@ -21,7 +21,9 @@ public class Test {
                 String address = input.next();
                 System.out.println("What is ur gender");
                 String gender = input.next();
-                return new Customer(username,password,day,month,year,gender,address);
+                Customer newCustomer = new Customer(username,password,day,month,year,gender,address);
+                Database.users.add(newCustomer);
+                return newCustomer;
 
             }
             else if (action == "login"){
@@ -52,7 +54,9 @@ public class Test {
                 String password = input.next();
                 System.out.println("Commercial Name");
                 String compName = input.next();
-                return new Supplier(username,password,compName);
+                Supplier newSupplier =  new Supplier(username,password,compName);
+                Database.suppliers.add( newSupplier);
+                return newSupplier;
 
             }
             else if (action == "login"){
