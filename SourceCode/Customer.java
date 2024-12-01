@@ -64,7 +64,7 @@ public class Customer extends Person implements View{
 
     public void add_to_cart(SupplierProduct Add){
         for(CustomerProduct product : (order.getMyCart()).cartItems){
-            if(Add.getName() == product.getName()){
+            if(Add.getName().equals(product.getName()) ){
                 product.setQuantity(product.getQuantity()+1);
                 return;
             }
@@ -74,7 +74,7 @@ public class Customer extends Person implements View{
     }
     public void remove_from_cart(Product Remove){
         for(CustomerProduct product : (order.getMyCart()).cartItems){
-            if(Remove.getName() == product.getName()){
+            if(Remove.getName().equals(product.getName())){
                 order.getMyCart().removeFromCart(Remove);
                 System.out.println("Item has been removed");
             }
