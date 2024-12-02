@@ -3,7 +3,7 @@ public class Customer extends Person implements View{
     public enum Gender {
         male, female , NULL;
     }
-    private int balance;
+    private double balance;
     private String address;
     private ArrayList<Category> intrests;
     private Gender gender;
@@ -21,12 +21,15 @@ public class Customer extends Person implements View{
         order = new Order(username,address);
         intrests = new ArrayList<Category>();
     }
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
+    }
+    public Order getOrder() {
+        return order;
     }
 
     public String getAddress() {
@@ -80,18 +83,37 @@ public class Customer extends Person implements View{
             return;
         }
     }
-    public void viewByCategory(Category category){
-        for(Supplier supplier : Database.suppliers){
-            supplier.viewByCategory(category);
+    public void viewByCategory(String category1){
+        Category category ;
+        if(Category.checkValidity(category1)){
+            for (Category cat : intrests) {
+                if(category1.toLowerCase().equals(cat.gettype().toLowerCase())){
+                    category = cat;
+                    for(Supplier supplier : Database.suppliers){
+                        supplier.viewByCategory(category);
+                    }
+                }
+            }}
+        else{
+            System.out.println("no existo");
         }
-
+       
     }
+        
+    
     public void viewAllProducts(){
         for(Supplier supplier : Database.suppliers){
             supplier.viewAllProducts();
         }
 
     }
+    public void viewAllSuppliers(){
+        for(Supplier supplier : Database.suppliers){
+            System.out.println(supplier.getcompName()); 
+        }
+
+    }
+
     public void view_by_supp(Supplier enteredSupplier){
         for(Supplier supplier : Database.suppliers){
             if(supplier == enteredSupplier){
