@@ -219,16 +219,16 @@ public class App {
     }
 
     public static Person validLogin(String username, String password, String type) {
-        if (type == "Customer") {
+        if (type.equals("Customer")) {
             for (Customer customer : Database.users) {
-                if (customer.username == username && customer.password == password)
+                if (customer.username.equals(username)  && customer.password.equals(password))
                     return customer;
             }
             return null;
         }
-        if (type == "Admin") {
+        if (type.equals("Admin") ) {
             for (Admin admin : Database.admins) {
-                if (admin.username == username && admin.password == password)
+                if (admin.username.equals(username) && admin.password.equals(password) )
                     return admin;
             }
             return null;
