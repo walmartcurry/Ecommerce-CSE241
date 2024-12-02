@@ -152,6 +152,55 @@ public class App {
                             exit = true;
                             break;
                     }
+                }else if(userType==2){
+
+                }
+                else if(userType==3){
+                     System.out.println(((Supplier)currentUser).getcompName());
+                    System.out.println("1-View by category");
+                    System.out.println("2-View All products");
+                    System.out.println("3-Add Product");
+                    System.out.println("4-Logout");
+                    System.out.println("5-Exit");
+                    int choice = input.nextInt();
+                    switch(choice){
+                        case 1:
+                            Category.viewCategories();
+                            System.out.println("Enter a category");
+                            String cat= input.next();
+                            ((Supplier)currentUser).viewByCategory(cat);
+                            System.out.println("Go back enter any value");
+                            String go_back1 = input.next();
+                             break;
+                        case 2:
+                            ((Supplier)currentUser).viewAllProducts();
+                            System.out.println("Go back enter any value");
+                            String go_back2 = input.next();
+                            break;
+                        case 3:
+                            System.out.println("Enter Product name:");
+                            String name = input.next();
+                            System.out.println("Enter Product Price:");
+                            double Price = input.nextDouble();
+                            System.out.println("Enter Category:");
+                            String category = input.next();
+                            System.out.println("Enter Stock you Can Provide Now:");
+                            int stock=input.nextInt();
+                            SupplierProduct newprod=new SupplierProduct(name,Price,category,stock,(Supplier)currentUser);
+                            ((Supplier)currentUser).add_product(newprod);
+                            break;
+                        case 4:
+                            loggedIn = false;
+                            break;
+                        case 5:
+                            loggedIn = false;
+                            exit = true;
+                            break;
+
+
+
+                    }
+
                 }
             }
         }
@@ -238,7 +287,7 @@ public class App {
 
     public static Supplier SupplierValidateLogin(String username, String password) {
         for (Supplier supplier : Database.suppliers) {
-            if (supplier.getUsername() == username && supplier.getPassword() == password)
+            if (supplier.getUsername().equals(username) && supplier.getPassword().equals(password))
                 return supplier;
         }
         return null;
