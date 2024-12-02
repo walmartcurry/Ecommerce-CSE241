@@ -1,4 +1,4 @@
 public interface View {
-    public  void  viewByCategory(Category category);
+    public  void  viewByCategory(String category);
     public  void viewAllProducts();
 }
