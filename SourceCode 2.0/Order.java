@@ -36,6 +36,9 @@ public class Order {
     private OrderStatus orderStatus;
     private String customerName;
     private String shippingAddress;
+    public String getCustomerName() {
+        return customerName;
+    }
 
     public Order(String customerName, String shippingAddress) {
         this.myCart = new Cart();
