@@ -1,11 +1,8 @@
 
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Order {
-
-
     enum PaymentMethods {
         Balance,
         Cash,
@@ -18,26 +15,13 @@ public class Order {
         SHIPPED,
         CANCELED,
     }
-
-    enum Promocodes {
-        save5(5.0),
-        save10(10.0),
-        save20(20.0),
-        save30(30.0),
-        save40(40.0),
-        save50(50.0);
-        private final double discount;
-
-        PromoCode(double discount) {
-            this.discount = discount;
-        }
-
-        public double getDiscount() {
-            return discount;
-        }
+    private static Map<String, PromoCode> promoCodeRepo = new HashMap<>();
+    static {
+        promoCodeRepo.put("SAVE10", new PromoCode("SAVE10", 10.0, false, LocalDate.of(2024, 12, 31), 50.0));
+        promoCodeRepo.put("DISCOUNT20", new PromoCode("DISCOUNT20", 20.0, true, LocalDate.of(2024, 12, 31), 100.0));
     }
 
-    private paymentMethods paymentMethod;
+    private PaymentMethods paymentMethod;
     private Cart myCart;
     private double totalPrice;
     private double discount;
@@ -46,25 +30,22 @@ public class Order {
     private String shippingAddress;
 
     public Order(String customerName, String shippingAddress) {
-        this.paymentMethod = PaymentMethods.Balance;
-        this.myCart = new cart();
-        this.totalPrice = 0.0;
-        this.discount = 0.0;
+        this.myCart = new Cart();
         this.orderStatus = OrderStatus.PENDING;
         this.customerName = customerName;
         this.shippingAddress = shippingAddress;
-
     }
 
     public void viewOrder() {
         System.out.println("Customer: " + customerName);
         System.out.println("Shipping Address: " + shippingAddress);
         System.out.println("Order Status: " + orderStatus);
-        System.out.println("Cart Details: " + myCart);
+        System.out.println("Cart Details: ");
+        myCart.viewcart();
         System.out.println("Total Price: $" + totalPrice);
         System.out.println("Discount Applied: $" + discount);
-        System.out.println("Final Price: $" + (totalPrice - discount));
-        System.out.println("Payment Method: " + paymentMethod);
+         System.out.println("Final Price: $" + (totalPrice - discount));
+        System.out.println("Payment Method: " + paymentMethod.toString());
     }
 
     public void setPaymentMethod(PaymentMethods paymentMethod) {
@@ -72,9 +53,8 @@ public class Order {
     }
 
     public void payByBalance(double myBalance) {
-        if (myBalance >= (totalPrice - discount)) {
+        if (myBalance >= totalPrice) {
             System.out.println("Payment successful by balance.");
-            totalPrice = 0;
             orderStatus = OrderStatus.PAID;
         } else {
             System.out.println("Insufficient balance to complete the payment.");
@@ -83,19 +63,10 @@ public class Order {
 
     public void payByCash() {
         System.out.println("Payment successful by cash.");
-        totalPrice = 0;
         orderStatus = OrderStatus.PAID;
     }
 
-    public void applyDiscount(double discountAmount) {
 
-        if (discountAmount > 0 && discountAmount <= totalPrice) {
-            this.discount = discountAmount;
-            System.out.println("Discount of $" + discountAmount + " applied.");
-        } else {
-            System.out.println("Invalid discount amount.");
-        }
-    }
 
     public void ChangeAddress(String newAddress) {
         this.shippingAddress = newAddress;
@@ -106,13 +77,11 @@ public class Order {
         if (orderStatus == OrderStatus.PAID) {
             orderStatus = OrderStatus.SHIPPED;
             System.out.println("Order has been finalized and shipped.");
-        } else {
-            System.out.println("Order cannot be finalized until payment is made.");
         }
     }
 
     public void cancelOrder() {
-        if (orderStatus == OrderStatus.PENDING) {
+        if (orderStatus == OrderStatus.SHIPPED) {
             orderStatus = OrderStatus.CANCELED;
             System.out.println("Order has been canceled.");
         } else {
@@ -124,37 +93,32 @@ public class Order {
         return orderStatus;
     }
 
-    public void addItemToCart(Product product) {
+    public void addItemToCart(CustomerProduct product) {
         myCart.AddToCart(product);
-        totalPrice += product.getPrice();
     }
 
-    public void removeItemFromCart(Product product) {
-        if (myCart.removeFromCart(product)) {
-            totalPrice -= product.getPrice();
-            System.out.println(product + " has been removed from the cart.");
-        } else {
-            System.out.println(product + " was not found in the cart.");
-        }
+    public void removeItemFromCart(CustomerProduct product) {
+        myCart.removeFromCart(product);
     }
-
-    public void apllypromocode(String promocode) {
-        try {
-            Promocode code = promocode.valueOf(promocode.toUpperCase());
-            double promodis = code.getDiscount;
-            if (promoDiscount <= totalPrice) {
-                this.discount = promoDiscount;
-                System.out.println("Promo code applied! Discount of $" + promoDiscount + " applied.");
-
-            } else {
-                System.out.println("Promo code discount exceeds total price. Cannot apply this promo code.");
-
-            }
-        } catch (IllegalArgumentException e) {
+    public void applyPromoCode(String promoCode) {
+        PromoCode code = promoCodeRepo.get(promoCode);
+        if (code == null) {
             System.out.println("Invalid promo code.");
-
+            return;
         }
 
+        if (!code.isValid(totalPrice)) {
+            System.out.println("Promo code is invalid or does not meet the minimum order value.");
+            return;
+        }
+
+        discount = code.calculateDiscount(totalPrice);
+        System.out.println("Promo code applied! Discount of $" + discount + " applied.");
+    }
+
+
+    public Cart getMyCart() {
+        return myCart;
     }
 }
 
@@ -164,4 +128,10 @@ public class Order {
 
 
 
+
+
+
+
    
+
+ 
