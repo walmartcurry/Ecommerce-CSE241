@@ -6,6 +6,9 @@ public class App {
         Scanner input = new Scanner(System.in);
         boolean exit = false;
 
+        Admin Ceo = new Admin("beso","beso",10,10,2002,"Ceo","9-12");
+        Database.admins.add(Ceo);
+
         while (!exit) {
             System.out.println("Welcome To StackShop!");
             System.out.println("Choose Your User Type: ");
@@ -14,10 +17,14 @@ public class App {
             System.out.println("3-Supplier");
             System.out.println("(-1)-Exit");
             int userType = input.nextInt();
+            int action=0;
             if(userType == -1)
                 break;
-            System.out.println("Would you like to login(2) or signup(1)");
-            int action = input.nextInt();
+            if(userType !=2) {
+                System.out.println("Would you like to login(2) or signup(1)");
+            action = input.nextInt();}else{
+                action=2;
+            }
 
             Object currentUser = handleUser(userType, action);
             boolean loggedIn = true;
@@ -40,7 +47,7 @@ public class App {
                             boolean addInterest = true;
                             while (addInterest) {
                                 System.out.println("Enter the name of the category you want to add");
-                                String category = input.nextLine();
+                                String category = input.next();
                                 ((Customer) currentUser).addIntrests(category);
                                 System.out.println("Do u want to add another interest yes(1) no(2)?");
                                 if (input.nextInt() == 2)
@@ -153,7 +160,59 @@ public class App {
                             break;
                     }
                 }else if(userType==2){
+                    System.out.println("Welcome back "+ ((Person)Ceo).getUsername()+"!");
+                    System.out.println("1-Add a supllier");
+                    System.out.println("2-View All products");
+                    System.out.println("3-View All orders");
+                    System.out.println("4-View All customers");
+                    System.out.println("5-View All admins");
+                    System.out.println("6-logout");
+                    System.out.println("7-Exit");
+                    int choice = input.nextInt();
+                    switch(choice) {
+                        case 1:
 
+                            break;
+
+                        case 2:
+                            ((Supplier) currentUser).viewAllProducts();
+                            System.out.println("Go back enter any value");
+                            String go_back2 = input.next();
+                            break;
+
+                        case 3:
+                            for (int i = 0; i < Database.orders.size(); i++) {
+                                Database.orders.get(i).viewOrder();
+                            }
+                            System.out.println("Go back enter any value");
+                            String go_back3 = input.next();
+                            break;
+
+                        case 4:
+                            for (int i = 0; i < Database.users.size(); i++) {
+                                Database.users.get(i).viewDetails();
+                            }
+                            System.out.println("Go back enter any value");
+                            String go_back4 = input.next();
+                            break;
+
+                        case 5:
+                            for (int i = 0; i < Database.admins.size(); i++) {
+                                Database.admins.get(i).viewDetails();
+                            }
+                            System.out.println("Go back enter any value");
+                            String go_back5 = input.next();
+                            break;
+
+                        case 6:
+                            loggedIn = false;
+                            break;
+
+                        case 7:
+                            loggedIn = false;
+                            exit = true;
+                            break;
+                    }
                 }
                 else if(userType==3){
                      System.out.println(((Supplier)currentUser).getcompName());
@@ -242,7 +301,7 @@ public class App {
             String username = input.next();
             System.out.println("Password");
             String password = input.next();
-            return (Admin) validLogin(username, password, "Admin");
+            return (Admin) validLogin(username,password,"Admin");
         } else if (userType == 3) {
             if (action == 1) {
                 System.out.println("Enter your account data");
