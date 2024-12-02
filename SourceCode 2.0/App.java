@@ -22,7 +22,7 @@ public class App {
                 break;
             if(userType !=2) {
                 System.out.println("Would you like to login(2) or signup(1)");
-            action = input.nextInt();}else{
+                action = input.nextInt();}else{
                 action=2;
             }
 
@@ -62,7 +62,7 @@ public class App {
                             while (!backChoice.equals("0")) {
                                 System.out.println("Choose a product id to add to your cart");
                                 System.out.println("0-back to menu");
-                                backChoice = input.nextLine();
+                                backChoice = input.next();
                                 if (backChoice.equals("0"))
                                     break;
                                 else {
@@ -77,7 +77,7 @@ public class App {
                             while (!backChoice2.equals("-1")) {
                                 System.out.println("Choose a product id to add to your cart");
                                 System.out.println("(-1)-back to menu");
-                                backChoice2 = input.nextLine();
+                                backChoice2 = input.next();
                                 if (backChoice2.equals("-1"))
                                     break;
                                 else {
@@ -92,7 +92,7 @@ public class App {
                             while (!backChoice3.equals("-1")) {
                                 System.out.println("Choose a Supplier to view their products: ");
                                 System.out.println("(-1) back to menu");
-                                backChoice3 = input.nextLine();
+                                backChoice3 = input.next();
                                 if (backChoice3.equals("-1"))
                                     break;
                                 else {
@@ -102,7 +102,7 @@ public class App {
                                     while (!backChoice4.equals("-1")) {
                                         System.out.println("Choose a product id to add to your cart");
                                         System.out.println("(-1)-back to menu");
-                                        backChoice4 = input.nextLine();
+                                        backChoice4 = input.next();
                                         if (backChoice4.equals("-1"))
                                             break;
                                         else {
@@ -113,43 +113,43 @@ public class App {
                             }
                             break;
                         case 5:
-                        ((Customer) currentUser).viewDetails();
-                        String backChoice4 = "-2";
-                        while(!backChoice4.equals("-1")){
-                            System.out.println("Edit username (1)");
-                            System.out.println("Edit password (2)");
-                            System.out.println("Add Balance (3)");
-                            System.out.println("back to menu (-1)");
-                            backChoice4 = input.nextLine();
-                             if(backChoice4.equals("1")){
-                                System.out.println("Enter new username");
-                                String newUsername = input.nextLine();
-                                ((Customer) currentUser).setUsername(newUsername);
-                            }
-                            else if(backChoice4.equals("2")){
-                                System.out.println("Enter new passwrord");
-                                String newPassword = input.nextLine();
-                                ((Customer) currentUser).setPassword(newPassword);
-                            }
-                            else if(backChoice4.equals("3")){
-                                System.out.println("Enter new balance");
-                                double newBalance = input.nextFloat();
-                                ((Customer) currentUser).setBalance(newBalance);
-                            }
+                            ((Customer) currentUser).viewDetails();
+                            String backChoice4 = "-2";
+                            while(!backChoice4.equals("-1")){
+                                System.out.println("Edit username (1)");
+                                System.out.println("Edit password (2)");
+                                System.out.println("Add Balance (3)");
+                                System.out.println("back to menu (-1)");
+                                backChoice4 = input.next();
+                                if(backChoice4.equals("1")){
+                                    System.out.println("Enter new username");
+                                    String newUsername = input.next();
+                                    ((Customer) currentUser).setUsername(newUsername);
+                                }
+                                else if(backChoice4.equals("2")){
+                                    System.out.println("Enter new passwrord");
+                                    String newPassword = input.next();
+                                    ((Customer) currentUser).setPassword(newPassword);
+                                }
+                                else if(backChoice4.equals("3")){
+                                    System.out.println("Enter new balance");
+                                    double newBalance = input.nextFloat();
+                                    ((Customer) currentUser).setBalance(newBalance);
+                                }
 
-                        }
-                        break;
-                        case 6:
-                        int back = 1;
-                        String username = ((Customer) currentUser).getUsername();
-                        for(Order order : Database.orders){
-                            if(order.getCustomerName().equals(username)){
-                                order.viewOrder();
                             }
-                        }
-                        System.out.println("Go back enter any value");
-                        back = input.nextInt();
-                        break;
+                            break;
+                        case 6:
+                            int back = 1;
+                            String username = ((Customer) currentUser).getUsername();
+                            for(Order order : Database.orders){
+                                if(order.getCustomerName().equals(username)){
+                                    order.viewOrder();
+                                }
+                            }
+                            System.out.println("Go back enter any value");
+                            back = input.nextInt();
+                            break;
                         case 7:
                             loggedIn = false;
                             break;
@@ -175,7 +175,7 @@ public class App {
                             break;
 
                         case 2:
-                            ((Supplier) currentUser).viewAllProducts();
+                            ((Admin) currentUser).view_products();
                             System.out.println("Go back enter any value");
                             String go_back2 = input.next();
                             break;
@@ -215,7 +215,7 @@ public class App {
                     }
                 }
                 else if(userType==3){
-                     System.out.println(((Supplier)currentUser).getcompName());
+                    System.out.println(((Supplier)currentUser).getcompName());
                     System.out.println("1-View by category");
                     System.out.println("2-View All products");
                     System.out.println("3-Add Product");
@@ -230,7 +230,7 @@ public class App {
                             ((Supplier)currentUser).viewByCategory(cat);
                             System.out.println("Go back enter any value");
                             String go_back1 = input.next();
-                             break;
+                            break;
                         case 2:
                             ((Supplier)currentUser).viewAllProducts();
                             System.out.println("Go back enter any value");
