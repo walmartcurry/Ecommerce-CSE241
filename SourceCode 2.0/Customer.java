@@ -90,7 +90,7 @@ public class Customer extends Person implements View{
                 if(category1.toLowerCase().equals(cat.gettype().toLowerCase())){
                     category = cat;
                     for(Supplier supplier : Database.suppliers){
-                        supplier.viewByCategory(category);
+                        supplier.viewByCategory(category1);
                     }
                 }
             }}
