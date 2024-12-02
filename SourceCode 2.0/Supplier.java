@@ -3,11 +3,12 @@ public class Supplier implements View {
     private String username;
     private String password;
     private String compName;
-    private ArrayList<SupplierProduct> products;
+    private ArrayList<SupplierProduct> products=new ArrayList<>();
     Supplier(String username , String password , String compName){
         this.username = username;
         this.password = password;
         this.compName = compName;
+
     }
 
     public void setUsername(String username) {
@@ -31,12 +32,15 @@ public class Supplier implements View {
     public String getcompName() {
         return compName;
     }
-    public void  viewByCategory(Category category){
-        for(SupplierProduct product : products){
-            if(product.getMycat().toLowerCase() == category.gettype().toLowerCase()){
-                product.viewProduct();
-            }
+    public void  viewByCategory(String category){
+        if(Category.checkValidity(category))
+        {
+            for (SupplierProduct product : products) {
+                if (product.getMycat().toLowerCase().equals(category.toLowerCase())) {
+                    product.viewProduct();
+                }
 
+            }
         }
     }
     public  void viewAllProducts(){
