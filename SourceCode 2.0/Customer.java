@@ -118,17 +118,17 @@ public class Customer extends Person implements View{
         }
     }
     public void finaliseOrder(String paymentmethod){
-        if(paymentmethod.toLowerCase().equals("cash") ){
-            order.payByCash();
+        if(this.Validate_final()) {
+            if (paymentmethod.toLowerCase().equals("cash")) {
+                order.payByCash();
+            } else if (paymentmethod.toLowerCase().equals("balance")) {
+                order.payByBalance(balance);
+            } else {
+                System.out.println("Invalid payment method");
+                return;
+            }
+            order.finalizeOrder();
         }
-        else if(paymentmethod.toLowerCase().equals("balance") ){
-            order.payByBalance(balance);
-        }
-        else{
-            System.out.println("Invalid payment method");
-            return;
-        }
-        order.finalizeOrder();
     }
     public SupplierProduct select(String sel){
         String [] split = sel.split("\\.");
@@ -139,7 +139,19 @@ public class Customer extends Person implements View{
     public void viewDetails(){
         System.out.println("Username : " + username);
     }
-    
+    public boolean Validate_final(){
+        for(CustomerProduct product : (order.getMyCart()).cartItems)
+        {
+            if(product.getQuantity()>product.getSupplierProd().getStock()){
+                System.out.println("The Quantity You are asking for the item " +product.getName() + " isn't available");
+                System.out.println("Available Stock:"+product.getSupplierProd().getStock());
+                return false;
+            }
+        }
+           return true;
+
+
+    }
 
 }
 
