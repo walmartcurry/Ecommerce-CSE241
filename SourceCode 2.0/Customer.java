@@ -5,7 +5,7 @@ public class Customer extends Person implements View{
     }
     private double balance;
     private String address;
-    private ArrayList<Category> intrests;
+    private ArrayList<Category> intrests=new ArrayList<>();
     private Gender gender;
     Order order;  
     Customer(String username , String password , int year , int month , int day ,String gender , String address)
@@ -83,23 +83,15 @@ public class Customer extends Person implements View{
             return;
         }
     }
-    public void viewByCategory(String category1){
-        Category category ;
-        if(Category.checkValidity(category1)){
-            for (Category cat : intrests) {
-                if(category1.toLowerCase().equals(cat.gettype().toLowerCase())){
-                    category = cat;
-                    for(Supplier supplier : Database.suppliers){
-                        supplier.viewByCategory(category1);
-                    }
-                }
-            }}
-        else{
+    public void viewByCategory(String category1) {
+        if (Category.checkValidity(category1)) {
+            for (Supplier supp : Database.suppliers)
+                supp.viewByCategory(category1);
+        } else {
             System.out.println("no existo");
         }
-       
     }
-        
+
     
     public void viewAllProducts(){
         for(Supplier supplier : Database.suppliers){
