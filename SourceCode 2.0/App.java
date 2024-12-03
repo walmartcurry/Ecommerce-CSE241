@@ -57,7 +57,8 @@ public class App {
 
                         case 2:
                             Category.viewCategories();
-                            ((Customer) currentUser).viewByCategory(input.nextLine());
+                            String Category_choice=input.next();
+                            ((Customer) currentUser).viewByCategory(Category_choice);
                             String backChoice = "1";
                             while (!backChoice.equals("0")) {
                                 System.out.println("Choose a product id to add to your cart");
