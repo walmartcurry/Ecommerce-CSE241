@@ -13,6 +13,8 @@ public class Customer extends Person implements View{
         super(username,password,year,month,day);
         this.address = address;
         this.gender = Gender.valueOf(gender.toLowerCase());
+        order = new Order(username,address);
+
     }
     Customer(){
         super();
@@ -70,6 +72,7 @@ public class Customer extends Person implements View{
                 return;
             }
         }
+
         order.getMyCart().AddToCart(new CustomerProduct(Add));
         System.out.println("Item added to cart");
     }
