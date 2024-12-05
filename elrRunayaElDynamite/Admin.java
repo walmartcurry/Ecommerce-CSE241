@@ -40,10 +40,24 @@ public class Admin extends Person {
         this.working_hours = working_hours;
     }
 
-    public void add_supplier(String username, String password, String compName) {
-        Supplier new_sup = new Supplier(username, password, compName);
-        Database.suppliers.add(new_sup);
-        System.out.println(new_sup.getcompName() + "  has been added :)");
+    public void handle_supplier(int index){
+        System.out.println("Decline request(0)");
+        System.out.println("Accept request(1)");
+        if(input.nextInt() == 0){
+            Database.supplierRequests.remove(Database.supplierRequests.get(index));
+            System.out.println("Request declined");
+        }
+        else if (input.nextInt() == 1){
+            Database.suppliers.add(Database.supplierRequests.get(index));
+            Database.supplierRequests.remove(Database.supplierRequests.get(index));
+            System.out.println("Request Accepted");
+        }
+    }
+    public void viewRequests(){
+        int count = 0;
+        for(Supplier supp : Database.supplierRequests){
+            System.out.println(count + " : " + supp.getcompName());
+        }
     }
 
     public void view_products() {
@@ -129,5 +143,8 @@ public class Admin extends Person {
 
 
 }
+
+
+
 
 
