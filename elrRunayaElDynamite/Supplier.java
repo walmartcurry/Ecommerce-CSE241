@@ -51,6 +51,7 @@ public class Supplier implements View {
     public void add_product(SupplierProduct ADD){
         products.add(ADD);
     }
+  
    
 }
    
