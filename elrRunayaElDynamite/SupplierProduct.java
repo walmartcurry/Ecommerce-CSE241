@@ -19,6 +19,11 @@ public class SupplierProduct extends Product {
     public Supplier getSupplier() {
         return supplier;
     }
+    public void Increase_Stock(int num_to_add){
+        this.stock+=num_to_add;
+        System.out.println("New Stock Of " +this.stock +" is "+"this.stock");
+
+    } 
     @Override
     public void viewProduct(){
         System.out.println("Product id : " +Database.suppliers.indexOf(supplier)+"."+Database.suppliers.get(Database.suppliers.indexOf(supplier)).getProducts().indexOf(this));
