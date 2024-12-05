@@ -31,7 +31,8 @@ public class App {
                 break;
             if(userType !=2) {
                 System.out.println("Would you like to login(2) or signup(1)");
-                action = input.nextInt();}else{
+                action = input.nextInt();}
+                else{
                 action=2;
             }
 
