@@ -38,6 +38,10 @@ public class App {
 
             Object currentUser = handleUser(userType, action);
             boolean loggedIn = true;
+            if(currentUser instanceof Supplier && Database.supplierRequests.contains(currentUser)){
+                loggedIn = false;
+                System.out.println("Your request is pending");
+            }
             if(currentUser == null){
                 loggedIn = false;  
                 System.out.println("The username or password u entered is incorrect");
@@ -227,7 +231,7 @@ public class App {
                     }
                 }else if(userType==2){
                     System.out.println("Welcome back "+ ((Person)Ceo).getUsername()+"!");
-                    System.out.println("1-Add a supllier");
+                    System.out.println("1-View requests");
                     System.out.println("2-View All products");
                     System.out.println("3-View All orders");
                     System.out.println("4-View All customers");
@@ -237,7 +241,24 @@ public class App {
                     int choice = input.nextInt();
                     switch(choice) {
                         case 1:
-
+                        if((!((Admin)currentUser).getRole().equals("HR")) || !((Admin)currentUser).getRole().equals("Ceo")){
+                            System.out.println("Acces denied");
+                            break;
+                        }
+                        else{
+                            ((Admin)currentUser).viewRequests();
+                            System.out.println("Enter the index of the supplier you want to edit");
+                            System.out.println("Exit(-1)");
+                            if(input.nextInt() == -1)
+                                break;
+                            try{
+                            ((Admin)currentUser).handle_supplier(input.nextInt());
+                            }
+                            catch(IndexOutOfBoundsException e ){
+                                System.out.println("Invalid index");
+                            }
+                        }
+                        
                             break;
 
                         case 2:
@@ -298,10 +319,39 @@ public class App {
                             String go_back1 = input.next();
                             break;
                         case 2:
-                            ((Supplier)currentUser).viewAllProducts();
-                            System.out.println("Go back enter any value");
-                            String go_back2 = input.next();
-                            break;
+                        ((Supplier) currentUser).viewAllProducts();
+                        for(SupplierProduct product : ((Supplier) currentUser).getProducts()){
+                            int count = 0;
+                            System.out.println("Product "+count +" Stock: "+product.getStock());
+                            count++;
+        
+
+                        }
+                        String backChoice2 = "1";
+                        while (!backChoice2.equals("-1")) {
+                            System.out.println("Choose a product id to edit");
+                            System.out.println("(-1)-back to menu");
+                            backChoice2 = input.next();
+                            if (backChoice2.equals("-1"))
+                                break;
+                            double choice4 = -19;
+                            while(choice4 !=-1){
+                                System.out.println("Edit price (0)");
+                                System.out.println("Increase stock (1)");
+                                System.out.println("Back (-1)");
+                                choice4 = input.nextInt();
+                                if(choice4 == 0){
+                                    System.out.println("Enter new price");
+                                    ((Supplier) currentUser).getProducts().get(Integer.parseInt(backChoice2)).setPrice(input.nextDouble());
+                                }
+                                else if (choice4 == 1){
+                                    System.out.println("how many pieces do u want to add");
+                                    ((Supplier) currentUser).getProducts().get(Integer.parseInt(backChoice2)).Increase_Stock(input.nextInt());
+                                }
+                            }
+                        }
+                        break;
+
                         case 3:
                             System.out.println("Enter Product name:");
                             String name = input.next();
@@ -378,7 +428,7 @@ public class App {
                 System.out.println("Commercial Name");
                 String compName = input.next();
                 Supplier newSupplier = new Supplier(username, password, compName);
-                Database.suppliers.add(newSupplier);
+                Database.supplierRequests.add(newSupplier);
                 return newSupplier;
             } else if (action == 2) {
                 System.out.println("Enter your account data");
