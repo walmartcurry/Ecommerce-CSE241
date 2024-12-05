@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 public class Cart{
     ArrayList<CustomerProduct> cartItems;
     private double totalPrice;
@@ -8,10 +7,12 @@ public class Cart{
         cartItems = new ArrayList<CustomerProduct>();
     }
 
-    public void calcTotalPrice(){
+    public double calcTotalPrice(){
+        double sum = 0;
         for (CustomerProduct cartItem : cartItems) {
-            this.totalPrice += cartItem.getPrice();
+            sum += (cartItem.getPrice()*cartItem.getQuantity());
         }
+        return sum;
     }
 
     public double getTotalPrice() {
@@ -19,8 +20,8 @@ public class Cart{
     }
 
     public void viewcart(){
+        totalPrice = calcTotalPrice();
         if(!cartItems.isEmpty()){
-            calcTotalPrice();
         int count = 0;
         for (CustomerProduct cartItem : cartItems) {
             System.out.println("Product : "+ count++);
