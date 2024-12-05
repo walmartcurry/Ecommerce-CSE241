@@ -1,5 +1,5 @@
 public class CustomerProduct extends Product {
-    private int quantity = 1;
+    private int quantity =  1;
     private SupplierProduct supplierProd;
     CustomerProduct(SupplierProduct newProd){
         super(newProd.name,newProd.price,newProd.getMycat());
@@ -33,4 +33,6 @@ public class CustomerProduct extends Product {
 
     
 }
+
+
 
