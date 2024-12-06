@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
@@ -25,13 +28,14 @@ public class App {
             System.out.println("2-Admin");
             System.out.println("3-Supplier");
             System.out.println("(-1)-Exit");
-            int userType = input.nextInt();
+            int userType = getValidIntInput(input,"Choose your account type");
             int action=0;
             if(userType == -1)
                 break;
             if(userType !=2) {
-                System.out.println("Would you like to login(2) or signup(1)");
-                action = input.nextInt();}
+
+                action = getValidIntInput(input, "Would you like to login(2) or signup(1)");
+            }
             else{
                 action=2;
             }
@@ -69,8 +73,9 @@ public class App {
                                 System.out.println("Enter the name of the category you want to add");
                                 String category = input.next();
                                 ((Customer) currentUser).addIntrests(category);
-                                System.out.println("Do u want to add another interest yes(1) no(2)?");
-                                if (input.nextInt() == 2)
+      
+                                int choice2 = getValidIntInput(input,"Do u want to add another interest yes(1) no(2)?");
+                                if ( choice2 == 2)
                                     addInterest = false;
                             }
                             break;
@@ -161,7 +166,7 @@ public class App {
                             }
                             break;
                         case 6:
-                            int back = 1;
+                            String back = " ";
                             String username = ((Customer) currentUser).getUsername();
                             for(Order order : Database.orders){
                                 if(order.getCustomerName().equals(username)){
@@ -170,7 +175,7 @@ public class App {
                             }
 
                             System.out.println("Go back enter any value");
-                            String hamada = input.next();
+                            back = input.nextLine();
                             break;
                         case 7 :
                             String back2 = "1";
@@ -184,7 +189,7 @@ public class App {
                                     System.out.println("Enter payment method");
                                     System.out.println("0-cash");
                                     System.out.println("1-balance");
-                                    int paymentMethod = input.nextInt();
+                                    int paymentMethod = getValidIntInput(input, "");
                                     if(paymentMethod == 0){
                                         ((Customer) currentUser).finaliseOrder("cash");
                                         break;
@@ -206,16 +211,12 @@ public class App {
                                         System.out.println("Set quantity(2)");
                                         System.out.println("Go back (-1)");
                                         back2 = input.next();
-                                        if(back2.equals("1")) {
-                                            ((Customer) currentUser).remove_from_cart(edited);
-                                            break;
-                                        }
-
+                                        if(back2.equals("1"))
+                                            ((Customer)currentUser).remove_from_cart(edited);
                                         else if (back2.equals("2")){
-                                            System.out.println("Enter the quantity you want");
-                                            int quant = input.nextInt();
+
+                                            int quant = getValidIntInput(input, "Enter the quantity you want");
                                             edited.setQuantity(quant);
-                                            break;
                                         }
                                     }}
                                 else if (back2.equals("-1")){
@@ -242,7 +243,7 @@ public class App {
                     System.out.println("5-View All admins");
                     System.out.println("6-logout");
                     System.out.println("7-Exit");
-                    int choice = input.nextInt();
+                    int choice = getValidIntInput(input, "");
                     switch(choice) {
                         case 1:
                             if (!((Admin)currentUser).getRole().equals("HR") && !((Admin)currentUser).getRole().equals("Ceo")){
@@ -253,7 +254,7 @@ public class App {
                                 ((Admin)currentUser).viewRequests();
                                 System.out.println("Enter the index of the supplier you want to edit");
                                 System.out.println("Exit(-1)");
-                                int ha3mel_eh=input.nextInt();
+                                int ha3mel_eh=getValidIntInput(input, "");
                                 if(ha3mel_eh== -1)
                                     break;
                                 try{
@@ -314,7 +315,7 @@ public class App {
                     System.out.println("3-Add Product");
                     System.out.println("4-Logout");
                     System.out.println("5-Exit");
-                    int choice = input.nextInt();
+                    int choice = getValidIntInput(input, "");
                     switch(choice){
                         case 1:
                             Category.viewCategories();
@@ -349,15 +350,14 @@ public class App {
                                     System.out.println("Edit price (0)");
                                     System.out.println("Increase stock (1)");
                                     System.out.println("Back (-1)");
-                                    choice4 = input.nextInt();
+                                    choice4 = getValidIntInput(input, "");
                                     if(choice4 == 0){
-                                        System.out.println("Enter new price");
-                                        int new_price=input.nextInt();
+                                        int new_price=getValidIntInput(input, "Enter new price");
                                         ((Supplier) currentUser).getProducts().get(prodIndex).setPrice(new_price);
                                     }
                                     else if (choice4 == 1){
                                         System.out.println("how many pieces do u want to add");
-                                        int h= input.nextInt();
+                                        int h= getValidIntInput(input, "");
                                         ((Supplier) currentUser).getProducts().get(prodIndex).Increase_Stock(h);
                                     }
                                 }
@@ -372,7 +372,7 @@ public class App {
                             System.out.println("Enter Category:");
                             String category = input.next();
                             System.out.println("Enter Stock you Can Provide Now:");
-                            int stock=input.nextInt();
+                            int stock=getValidIntInput(input, "");
                             SupplierProduct newprod=new SupplierProduct(name,Price,category,stock,(Supplier)currentUser);
                             ((Supplier)currentUser).add_product(newprod);
                             break;
@@ -402,16 +402,43 @@ public class App {
                 System.out.println("Enter your account data");
                 System.out.println("Username");
                 String username = input.next();
+                while(!isValidUsername(username)){
+                    System.out.println("Invalid username try again ");
+                    username = input.next();
+                }
                 System.out.println("Password");
                 String password = input.next();
+                while(!isValidPassword(password)){
+                    System.out.println("Invalid password try again ");
+                    password = input.next();
+                }
                 System.out.println("Enter your date of birth");
-                int day = input.nextInt();
-                int month = input.nextInt();
-                int year = input.nextInt();
+                int day = getValidIntInput(input, "Day:");
+                int month = getValidIntInput(input, "Month:");
+                int year = getValidIntInput(input, "Year:");
+                while(!isValidDateOfBirth(day, month, year)){
+                    System.out.println("Invalid DOB");
+                     day = getValidIntInput(input, "Day:");
+                     month = getValidIntInput(input, "Month:");
+                     year = getValidIntInput(input, "Year:");
+
+                }
                 System.out.println("Enter your address");
                 String address = input.next();
+                while(!isValidAddress(address)){
+                    System.out.println("Invalid address try again ");
+                    address = input.next();
+                }
                 System.out.println("What is ur gender");
                 String gender = input.next();
+                while(!isValidGender(gender)){
+                    System.out.println("Invalid gender try again ");
+                    gender = input.next();
+                }
+                
+                isValidGender(gender);
+                isValidPassword(password);
+                isValidUsername(username);
                 Customer newCustomer = new Customer(username, password, day, month, year, gender, address);
                 Database.users.add(newCustomer);
                 return newCustomer;
@@ -435,8 +462,16 @@ public class App {
                 System.out.println("Enter your account data");
                 System.out.println("Username");
                 String username = input.next();
+                while(!isValidUsername(username)){
+                    System.out.println("Invalid username try again ");
+                    username = input.next();
+                }
                 System.out.println("Password");
                 String password = input.next();
+                while(!isValidPassword(password)){
+                    System.out.println("Invalid password try again ");
+                    password = input.next();
+                }
                 System.out.println("Commercial Name");
                 String compName = input.next();
                 Supplier newSupplier = new Supplier(username, password, compName);
@@ -479,4 +514,42 @@ public class App {
         }
         return null;
     }
+    private static int getValidIntInput(Scanner input, String prompt) {
+        while (true) {
+            try {
+                System.out.println(prompt);
+                return input.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                input.nextLine(); // Clear the invalid input
+            }
+        }
+    }
+    private static boolean isValidUsername(String username) {
+        // Example rules: 3-20 characters, alphanumeric
+        return username.matches("^[a-zA-Z0-9]{3,20}$");
+    }
+    private static boolean isValidPassword(String password) {
+        // Example rules: 8+ characters, at least one uppercase, one lowercase, one digit
+        return password.matches("^(?=.[a-z])(?=.[A-Z])(?=.*\\d).{8,}$");
+    }
+    private static boolean isValidAddress(String address) {
+        // Prevent empty or extremely short addresses
+        return address != null && address.trim().length() >= 3;
+    }
+    private static boolean isValidGender(String gender) {
+    // Restrict to predefined values
+    return Arrays.asList("male", "female", "other").contains(gender.toLowerCase());
+}
+private static boolean isValidDateOfBirth(int day, int month, int year) {
+    if (year < 1900 || year > Calendar.getInstance().get(Calendar.YEAR)) return false;
+    if (month < 1 || month > 12) return false;
+    
+    int[] daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+        daysInMonth[1] = 29; // Leap year
+    }
+    
+    return day >= 1 && day <= daysInMonth[month - 1];
+}
 }
