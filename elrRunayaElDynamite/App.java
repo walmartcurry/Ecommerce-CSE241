@@ -241,7 +241,7 @@ public class App {
                     int choice = input.nextInt();
                     switch(choice) {
                         case 1:
-                        if((!((Admin)currentUser).getRole().equals("HR")) || !((Admin)currentUser).getRole().equals("Ceo")){
+                       if (!((Admin)currentUser).getRole().equals("HR") && !((Admin)currentUser).getRole().equals("Ceo")){
                             System.out.println("Acces denied");
                             break;
                         }
