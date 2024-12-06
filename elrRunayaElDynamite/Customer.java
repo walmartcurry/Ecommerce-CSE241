@@ -81,11 +81,11 @@ public class Customer extends Person implements View{
             if(Remove.getName().equals(product.getName())){
                 order.getMyCart().removeFromCart(Remove);
                 System.out.println("Item has been removed");
+                return;
             }
-            else{
-                System.out.println("Item not in cart");
-                return;}
+
         }
+        System.out.println("Item Not In Cart");
     }
     public void viewByCategory(String category1) {
         if (Category.checkValidity(category1)) {
