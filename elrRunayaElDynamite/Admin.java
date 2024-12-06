@@ -41,13 +41,15 @@ public class Admin extends Person {
     }
 
     public void handle_supplier(int index){
+        System.out.println("Choose: ");
         System.out.println("Decline request(0)");
         System.out.println("Accept request(1)");
-        if(input.nextInt() == 0){
+        int NOW_Choice=input.nextInt();
+        if(NOW_Choice== 0){
             Database.supplierRequests.remove(Database.supplierRequests.get(index));
             System.out.println("Request declined");
         }
-        else if (input.nextInt() == 1){
+        else if (NOW_Choice == 1){
             Database.suppliers.add(Database.supplierRequests.get(index));
             Database.supplierRequests.remove(Database.supplierRequests.get(index));
             System.out.println("Request Accepted");
@@ -57,6 +59,7 @@ public class Admin extends Person {
         int count = 0;
         for(Supplier supp : Database.supplierRequests){
             System.out.println(count + " : " + supp.getcompName());
+            count++;
         }
     }
 
@@ -143,7 +146,6 @@ public class Admin extends Person {
 
 
 }
-
 
 
 
