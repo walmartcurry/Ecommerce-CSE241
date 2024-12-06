@@ -32,7 +32,7 @@ public class App {
             if(userType !=2) {
                 System.out.println("Would you like to login(2) or signup(1)");
                 action = input.nextInt();}
-                else{
+            else{
                 action=2;
             }
 
@@ -43,7 +43,7 @@ public class App {
                 System.out.println("Your request is pending");
             }
             if(currentUser == null){
-                loggedIn = false;  
+                loggedIn = false;
                 System.out.println("The username or password u entered is incorrect");
 
             }
@@ -173,53 +173,53 @@ public class App {
                             back = input.nextInt();
                             break;
                         case 7 :
-                        String back2 = "1";
-                        ((Customer) currentUser).viewMyCart();
-                        while(!((Customer)currentUser).getOrder().getMyCart().cartItems.isEmpty()){
-                        System.out.println("Select item you want to edit");
-                        System.out.println("Go back to menu (-1)");
-                        System.out.println("Checkout (c)");
-                        back2 = input.next();
-                        if(back2.toLowerCase().equals("c")){
-                            System.out.println("Enter payment method");
-                            System.out.println("0-cash");
-                            System.out.println("1-balance");
-                            int paymentMethod = input.nextInt();
-                            if(paymentMethod == 0){
-                                ((Customer) currentUser).finaliseOrder("cash");
-                                break;
+                            String back2 = "1";
+                            ((Customer) currentUser).viewMyCart();
+                            while(!((Customer)currentUser).getOrder().getMyCart().cartItems.isEmpty()){
+                                System.out.println("Select item you want to edit");
+                                System.out.println("Go back to menu (-1)");
+                                System.out.println("Checkout (c)");
+                                back2 = input.next();
+                                if(back2.toLowerCase().equals("c")){
+                                    System.out.println("Enter payment method");
+                                    System.out.println("0-cash");
+                                    System.out.println("1-balance");
+                                    int paymentMethod = input.nextInt();
+                                    if(paymentMethod == 0){
+                                        ((Customer) currentUser).finaliseOrder("cash");
+                                        break;
+                                    }
+
+                                    else if (paymentMethod == 1){
+                                        ((Customer) currentUser).finaliseOrder("balance");
+                                        break;
+                                    }
+                                    else{
+                                        System.out.println("INVALID YA 7AYAWAN");
+                                        break;
+                                    }
+                                }
+                                if(!back2.equals("-1")){
+                                    CustomerProduct edited = ((Customer)currentUser).getOrder().getMyCart().cartItems.get(Integer.parseInt(back2));
+                                    while(!back2.equals("-1")){
+                                        System.out.println("Remove (1)");
+                                        System.out.println("Set quantity(2)");
+                                        System.out.println("Go back (-1)");
+                                        back2 = input.next();
+                                        if(back2.equals("1"))
+                                            ((Customer)currentUser).remove_from_cart(edited);
+                                        else if (back2.equals("2")){
+                                            System.out.println("Enter the quantity you want");
+                                            int quant = input.nextInt();
+                                            edited.setQuantity(quant);
+                                        }
+                                    }}
+                                else if (back2.equals("-1")){
+                                    break;
+                                }
                             }
-                               
-                            else if (paymentMethod == 1){
-                            ((Customer) currentUser).finaliseOrder("balance");
                             break;
-                            }
-                            else{
-                                System.out.println("INVALID YA 7AYAWAN");
-                                break;
-                            }
-                        }
-                        if(!back2.equals("-1")){
-                        CustomerProduct edited = ((Customer)currentUser).getOrder().getMyCart().cartItems.get(Integer.parseInt(back2));
-                        while(!back2.equals("-1")){
-                            System.out.println("Remove (1)");
-                            System.out.println("Set quantity(2)");
-                            System.out.println("Go back (-1)");
-                            back2 = input.next();
-                            if(back2.equals("1"))
-                            ((Customer)currentUser).remove_from_cart(edited);
-                            else if (back2.equals("2")){
-                                System.out.println("Enter the quantity you want");
-                                int quant = input.nextInt();
-                                edited.setQuantity(quant);
-                            }
-                        }}
-                        else if (back2.equals("-1")){
-                            break;
-                        }
-                        }
-                        break;
-                        
+
                         case 8:
                             loggedIn = false;
                             break;
@@ -241,24 +241,26 @@ public class App {
                     int choice = input.nextInt();
                     switch(choice) {
                         case 1:
-                       if (!((Admin)currentUser).getRole().equals("HR") && !((Admin)currentUser).getRole().equals("Ceo")){
-                            System.out.println("Acces denied");
-                            break;
-                        }
-                        else{
-                            ((Admin)currentUser).viewRequests();
-                            System.out.println("Enter the index of the supplier you want to edit");
-                            System.out.println("Exit(-1)");
-                            if(input.nextInt() == -1)
+                            if (!((Admin)currentUser).getRole().equals("HR") && !((Admin)currentUser).getRole().equals("Ceo")){
+                                System.out.println("Acces denied");
                                 break;
-                            try{
-                            ((Admin)currentUser).handle_supplier(input.nextInt());
                             }
-                            catch(IndexOutOfBoundsException e ){
-                                System.out.println("Invalid index");
+                            else{
+                                ((Admin)currentUser).viewRequests();
+                                System.out.println("Enter the index of the supplier you want to edit");
+                                System.out.println("Exit(-1)");
+                                int ha3mel_eh=input.nextInt();
+                                if(ha3mel_eh== -1)
+                                    break;
+                                try{
+
+                                    ((Admin)currentUser).handle_supplier(ha3mel_eh);
+                                }
+                                catch(IndexOutOfBoundsException e ){
+                                    System.out.println("Invalid index");
+                                }
                             }
-                        }
-                        
+
                             break;
 
                         case 2:
@@ -319,38 +321,38 @@ public class App {
                             String go_back1 = input.next();
                             break;
                         case 2:
-                        ((Supplier) currentUser).viewAllProducts();
-                        for(SupplierProduct product : ((Supplier) currentUser).getProducts()){
-                            int count = 0;
-                            System.out.println("Product "+count +" Stock: "+product.getStock());
-                            count++;
-        
+                            ((Supplier) currentUser).viewAllProducts();
+                            for(SupplierProduct product : ((Supplier) currentUser).getProducts()){
+                                int count = 0;
+                                System.out.println("Product "+count +" Stock: "+product.getStock());
+                                count++;
 
-                        }
-                        String backChoice2 = "1";
-                        while (!backChoice2.equals("-1")) {
-                            System.out.println("Choose a product id to edit");
-                            System.out.println("(-1)-back to menu");
-                            backChoice2 = input.next();
-                            if (backChoice2.equals("-1"))
-                                break;
-                            double choice4 = -19;
-                            while(choice4 !=-1){
-                                System.out.println("Edit price (0)");
-                                System.out.println("Increase stock (1)");
-                                System.out.println("Back (-1)");
-                                choice4 = input.nextInt();
-                                if(choice4 == 0){
-                                    System.out.println("Enter new price");
-                                    ((Supplier) currentUser).getProducts().get(Integer.parseInt(backChoice2)).setPrice(input.nextDouble());
-                                }
-                                else if (choice4 == 1){
-                                    System.out.println("how many pieces do u want to add");
-                                    ((Supplier) currentUser).getProducts().get(Integer.parseInt(backChoice2)).Increase_Stock(input.nextInt());
+
+                            }
+                            String backChoice2 = "1";
+                            while (!backChoice2.equals("-1")) {
+                                System.out.println("Choose a product id to edit");
+                                System.out.println("(-1)-back to menu");
+                                backChoice2 = input.next();
+                                if (backChoice2.equals("-1"))
+                                    break;
+                                double choice4 = -19;
+                                while(choice4 !=-1){
+                                    System.out.println("Edit price (0)");
+                                    System.out.println("Increase stock (1)");
+                                    System.out.println("Back (-1)");
+                                    choice4 = input.nextInt();
+                                    if(choice4 == 0){
+                                        System.out.println("Enter new price");
+                                        ((Supplier) currentUser).getProducts().get(Integer.parseInt(backChoice2)).setPrice(input.nextDouble());
+                                    }
+                                    else if (choice4 == 1){
+                                        System.out.println("how many pieces do u want to add");
+                                        ((Supplier) currentUser).getProducts().get(Integer.parseInt(backChoice2)).Increase_Stock(input.nextInt());
+                                    }
                                 }
                             }
-                        }
-                        break;
+                            break;
 
                         case 3:
                             System.out.println("Enter Product name:");
