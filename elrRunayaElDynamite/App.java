@@ -338,17 +338,23 @@ public class App {
                                     break;
                                 double choice4 = -19;
                                 while(choice4 !=-1){
+                                    String [] split = backChoice2.split("\\.");
+
+                                    int prodIndex = Integer.parseInt(split[1]);
+
                                     System.out.println("Edit price (0)");
                                     System.out.println("Increase stock (1)");
                                     System.out.println("Back (-1)");
                                     choice4 = input.nextInt();
                                     if(choice4 == 0){
                                         System.out.println("Enter new price");
-                                        ((Supplier) currentUser).getProducts().get(Integer.parseInt(backChoice2)).setPrice(input.nextDouble());
+                                        int new_price=input.nextInt();
+                                        ((Supplier) currentUser).getProducts().get(prodIndex).setPrice(new_price);
                                     }
                                     else if (choice4 == 1){
                                         System.out.println("how many pieces do u want to add");
-                                        ((Supplier) currentUser).getProducts().get(Integer.parseInt(backChoice2)).Increase_Stock(input.nextInt());
+                                        int h= input.nextInt();
+                                        ((Supplier) currentUser).getProducts().get(prodIndex).Increase_Stock(h);
                                     }
                                 }
                             }
