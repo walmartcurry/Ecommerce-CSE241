@@ -13,8 +13,8 @@ public class App {
         SupplierProduct greek = new SupplierProduct("Greek yogurt", 300, "dairy",102,Nada);
         Nada.add_product(protienmilk);
         Nada.add_product(greek);
-        Customer ana = new Customer("amir", "bigAmir",2005,7,2,"male","El rehab");
-        Customer enta = new Customer("adham", "adhamthearray",2005,7,2,"male","El rehab");
+        Customer ana = new Customer("amir", "bigAmir",2,7,2005,"male","El rehab");
+        Customer enta = new Customer("adham", "adhamthearray",2,7,2005,"male","El rehab");
         Database.users.add(enta);
         Database.users.add(ana);
         Database.suppliers.add(Nada);
