@@ -170,7 +170,7 @@ public class App {
                             }
 
                             System.out.println("Go back enter any value");
-                            back = input.nextInt();
+                            String hamada = input.next();
                             break;
                         case 7 :
                             String back2 = "1";
@@ -206,12 +206,16 @@ public class App {
                                         System.out.println("Set quantity(2)");
                                         System.out.println("Go back (-1)");
                                         back2 = input.next();
-                                        if(back2.equals("1"))
-                                            ((Customer)currentUser).remove_from_cart(edited);
+                                        if(back2.equals("1")) {
+                                            ((Customer) currentUser).remove_from_cart(edited);
+                                            break;
+                                        }
+
                                         else if (back2.equals("2")){
                                             System.out.println("Enter the quantity you want");
                                             int quant = input.nextInt();
                                             edited.setQuantity(quant);
+                                            break;
                                         }
                                     }}
                                 else if (back2.equals("-1")){
