@@ -7,8 +7,8 @@ public class Customer extends Person implements View{
     private String address;
     private ArrayList<Category> intrests=new ArrayList<>();
     private Gender gender;
-    Order order;  
-    Customer(String username , String password , int year , int month , int day ,String gender , String address)
+    Order order;
+    Customer(String username , String password , int day, int month , int year ,String gender , String address)
     {
         super(username,password,day,month,year);
         this.address = address;
@@ -58,7 +58,7 @@ public class Customer extends Person implements View{
             System.out.println(category +" Added to intrests");
         }
         else
-        System.out.println("Category you entered does not exist in our store");
+            System.out.println("Category you entered does not exist in our store");
     }
 
     public Gender getGender() {
@@ -83,8 +83,9 @@ public class Customer extends Person implements View{
                 System.out.println("Item has been removed");
                 return;
             }
+
         }
-        System.out.println("Item not in cart");
+        System.out.println("Item Not In Cart");
     }
     public void viewByCategory(String category1) {
         if (Category.checkValidity(category1)) {
@@ -93,7 +94,7 @@ public class Customer extends Person implements View{
         } else {
             System.out.println("no existo");
         }
-    } 
+    }
     public void viewAllProducts(){
 
         for(Supplier supplier : Database.suppliers){
@@ -103,7 +104,7 @@ public class Customer extends Person implements View{
     }
     public void viewAllSuppliers(){
         for(Supplier supplier : Database.suppliers){
-            System.out.println(supplier.getcompName()); 
+            System.out.println(supplier.getcompName());
         }
 
     }
@@ -111,8 +112,8 @@ public class Customer extends Person implements View{
     public void view_by_supp(Supplier enteredSupplier){
         for(Supplier supplier : Database.suppliers){
             if(supplier == enteredSupplier){
-            supplier.viewAllProducts();
-            return;
+                supplier.viewAllProducts();
+                return;
             }
         }
     }
@@ -153,13 +154,18 @@ public class Customer extends Person implements View{
                 return false;
             }
         }
-           return true;
+        return true;
 
 
     }
 
 }
-    
+
+
+
+
+
+
 
 
 
