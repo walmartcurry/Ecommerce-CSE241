@@ -98,7 +98,6 @@ public class Order {
         if (orderStatus == OrderStatus.PAID) {
             for( CustomerProduct product : myCart.cartItems){
                 product.getSupplierProd().setStock((product.getSupplierProd().getStock()) - (product.getQuantity()));
-                System.out.println("stock after"+product.getSupplierProd().getStock());
             }
             orderStatus = OrderStatus.SHIPPED;
             System.out.println("Order has been finalized and shipped.");
