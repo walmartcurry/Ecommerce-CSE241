@@ -76,16 +76,15 @@ public class Customer extends Person implements View{
         order.getMyCart().AddToCart(new CustomerProduct(Add));
         System.out.println("Item added to cart");
     }
-    public void remove_from_cart(CustomerProduct Remove){
+     public void remove_from_cart(CustomerProduct Remove){
         for(CustomerProduct product : (order.getMyCart()).cartItems){
             if(Remove.getName().equals(product.getName())){
                 order.getMyCart().removeFromCart(Remove);
                 System.out.println("Item has been removed");
                 return;
             }
-
         }
-        System.out.println("Item Not In Cart");
+        System.out.println("Item not in cart");
     }
     public void viewByCategory(String category1) {
         if (Category.checkValidity(category1)) {
