@@ -1,0 +1,27 @@
+Login / signup Page ( choose login or signup choose user type)
+Login Page (Walid)
+Signup Page (Walid)
+Customer{
+DashBoard (All functionalities + Products of intrest) (Adham)
+Page to View All categories and chosee which one to view  (Basem)
+One page view Products (Basem)
+Page to view all categories and choose one to add to intrests (Basem)
+Page account details (Amir)
+Page previous orders (Amir)
+Cart page (My guy walid)
+}
+Admin{
+Dashboard (Adham)
+Views:
+Orders (Walid)
+suppliers (Walid)
+customers (Amir)
+admins (Amir)
+
+}
+Supplier{
+Dashboard (Adham)
+View:
+Create new product (Adham)
+}
+Each dashboard has the logout button and a diff color 3a4an adham.
