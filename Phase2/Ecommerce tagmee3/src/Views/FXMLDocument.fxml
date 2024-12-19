@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500" prefWidth="700" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FXMLDocumentController">
+    <children>
+        <!-- SignUp Pane -->
+        <AnchorPane fx:id="pane_signup" prefHeight="500" prefWidth="700" style="-fx-background-color: #f4f4f4;" visible="true">
+            <children>
+                <!-- Header Pane -->
+                <Pane layoutY="0" prefHeight="100" prefWidth="700" style="-fx-background-color: #4169e1;">
+                    <children>
+                        <Label layoutX="250" layoutY="30" text="Sign Up" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold Italic" size="30.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+
+                <!-- Form Fields -->
+                <Label layoutX="50" layoutY="120" text="Username" style="-fx-font-size: 16;" />
+                <TextField fx:id="txt_username_up" layoutX="150" layoutY="115" prefWidth="200" promptText="Enter Username" />
+
+                <Label layoutX="50" layoutY="170" text="Password" style="-fx-font-size: 16;" />
+                <PasswordField fx:id="txt_password_up" layoutX="150" layoutY="165" prefWidth="200" promptText="Enter Password" />
+
+                <Label layoutX="50" layoutY="220" text="Gender" style="-fx-font-size: 16;" />
+                <ComboBox fx:id="genderComboBox" layoutX="150" layoutY="215" prefWidth="200" promptText="Select Gender" />
+
+                <Label layoutX="50" layoutY="270" text="Date of Birth" style="-fx-font-size: 16;" />
+                <ComboBox fx:id="dobDay" layoutX="150" layoutY="265" prefWidth="60" promptText="Day" />
+                <ComboBox fx:id="dobMonth" layoutX="220" layoutY="265" prefWidth="60" promptText="Month" />
+                <ComboBox fx:id="dobYear" layoutX="290" layoutY="265" prefWidth="80" promptText="Year" />
+
+                <Label layoutX="50" layoutY="320" text="Address" style="-fx-font-size: 16;" />
+                <TextField fx:id="txt_address" layoutX="150" layoutY="315" prefWidth="400" promptText="Enter Address" />
+
+                <!-- Buttons -->
+                <Button layoutX="150" layoutY="370" onAction="#SignUp" prefHeight="42" prefWidth="150" style="-fx-background-color: #4169e1;" text="Sign Up" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                    </font>
+                </Button>
+
+                <Button layoutX="320" layoutY="370" onAction="#LoginpaneShow" prefHeight="42" prefWidth="150" style="-fx-background-color: #4169e1;" text="Back to Login" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                    </font>
+                </Button>
+
+                <Label fx:id="lbl_feedback_signup" layoutX="200" layoutY="430" style="-fx-text-fill: red;" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
