@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white;" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CheckoutController">
+    <VBox spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+        
+       
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color: #232F3E;">
+            <padding>
+                <Insets bottom="10" left="20" right="20" top="10" />
+            </padding>
+            <Label fx:id="headerLabel" style="-fx-text-fill: white; -fx-font-size: 18;" text="Checkout" />
+        </HBox>
+        
+        <HBox spacing="20">
+           
+            <VBox spacing="15" style="-fx-background-color: white; -fx-border-color: #DDDDDD; -fx-border-radius: 5;" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="20" left="20" right="20" top="20" />
+                </padding>
+                <Label fx:id="paymentMethodLabel" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Payment method" />
+              
+                <VBox spacing="10">
+                    <Label fx:id="balanceLabel" prefHeight="18.0" prefWidth="210.0" style="-fx-font-size: 14;" text="" />
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <TextField fx:id="giftCodeField" prefWidth="300" promptText="Enter code" />
+                        <Button fx:id="applyGiftCodeBtn" onAction="#applyDiscount" style="-fx-background-color: #E3E3E3;" text="Apply" />
+                    </HBox>
+                </VBox>
+               
+                <VBox spacing="5">
+                    <RadioButton fx:id="codOption" text="Pay by cash">
+                        <font>
+                            <Font size="14" />
+                        </font>
+                    </RadioButton>
+                </VBox>
+            <RadioButton fx:id="codOption1" text="Pay by balance">
+               <font>
+                  <Font size="14" />
+               </font>
+            </RadioButton>
+            
+                <Button fx:id="PlaceOrder" onAction="#placeOrder" prefHeight="32.0" prefWidth="248.0" style="-fx-background-color: #FFD814; -fx-background-radius: 8;" text="Place Order" />
+            <Button fx:id="backBtn" onAction="#backAction" prefHeight="32.0" prefWidth="248.0" style="-fx-background-color: #FFD814; -fx-background-radius: 8;" text="Back" />
+                <Label fx:id="error" prefHeight="18.0" prefWidth="419.0" style="-fx-font-size: 14;" />
+            </VBox>
+         
+            <VBox minWidth="300" spacing="15" style="-fx-background-color: white;">
+                <VBox spacing="10" style="-fx-border-color: #DDDDDD; -fx-border-radius: 5; -fx-padding: 15;">
+                    <HBox spacing="10">
+                        <Label text="Items:" HBox.hgrow="ALWAYS" />
+                        <Label fx:id="itemsLabel" text="--" HBox.hgrow="ALWAYS" />
+                    </HBox>
+                    <HBox spacing="10" />
+                    <Separator />
+                    <HBox spacing="10">
+                        <Label style="-fx-font-weight: bold;" text="Order total" HBox.hgrow="ALWAYS" />
+                        <Label fx:id="orderTotalLabel" style="-fx-font-weight: bold;" text="EGP 3,512.02" HBox.hgrow="ALWAYS" />
+                    </HBox>
+                </VBox>
+            </VBox>
+        </HBox>
+    </VBox>
+</AnchorPane>

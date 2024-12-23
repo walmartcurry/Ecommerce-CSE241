@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane fitToWidth="true" styleClass="main-scroll-pane" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerInterestsController">
+           
+
+    <VBox spacing="20" styleClass="content-pane">
+
+        <padding>
+            <Insets bottom="30" left="30" right="30" top="30" />
+        </padding>
+
+      
+        <HBox styleClass="header-container">
+            <Text styleClass="page-title" text="Your Interests &amp; Preferences" />
+            <Text styleClass="subtitle-text" text="Personalize your shopping experience" />
+        </HBox>
+
+        
+        <VBox spacing="25" styleClass="main-content">
+            
+            <VBox styleClass="section-container">
+                <Text styleClass="section-title" text="Featured Categories" />
+                <Text styleClass="section-description" text="Select categories you're most interested in to see more of what you love" />
+                
+                <FlowPane hgap="15" styleClass="categories-grid" vgap="15">
+                    <CheckBox fx:id="electronicsCheckBox" styleClass="category-checkbox" text="Electronics &amp; Devices" />
+                    <CheckBox fx:id="fashionCheckBox" styleClass="category-checkbox" text="Clothing &amp; Fashion" />
+                    <CheckBox fx:id="sportsCheckBox" styleClass="category-checkbox" text="Sports &amp; Outdoors" />
+                    <CheckBox fx:id="homeCheckBox" styleClass="category-checkbox" text="Home &amp; Kitchen" />
+                    <CheckBox fx:id="groceryCheckBox" styleClass="category-checkbox" text="Grocceries" />
+                </FlowPane>
+            </VBox>
+
+            
+            <HBox alignment="CENTER_RIGHT" spacing="15" styleClass="actions-container">
+                <Button fx:id="backBtn" styleClass="secondary-button" text="Back" onAction = "#BackAct" />
+                <Button fx:id="saveBtn" onAction="#handleSave" styleClass="primary-button" text="Save Preferences" />
+            </HBox>
+        </VBox>
+    </VBox>
+</ScrollPane>

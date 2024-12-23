@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="main-container" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignUpController">
+
+    <VBox alignment="CENTER" spacing="20" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        
+     
+        <Text styleClass="header-text" text="Create Your Account">
+            <font>
+                <Font name="System Bold" size="24" />
+            </font>
+        </Text>
+        
+       
+        <GridPane alignment="CENTER" hgap="10" vgap="10">
+            <padding>
+                <Insets bottom="20" left="40" right="40" top="20" />
+            </padding>
+
+          
+            <Text styleClass="section-header" text="Personal Information" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+
+            <Label styleClass="label" text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="usernameField" promptText="Enter your username" styleClass="textfield" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="usernameError" styleClass="error-message" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+           
+            <Text styleClass="section-header" text="Account Security" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+
+            <Label styleClass="label" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="textfield" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="passwordError" styleClass="error-message" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+          
+            <Text styleClass="section-header" text="Date of Birth" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+            <Label styleClass="label" text="Day:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+            <TextField fx:id="dayField" promptText="Day" styleClass="textfield" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label fx:id="dayError" styleClass="error-message" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            
+            <Label styleClass="label" text="Month:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+            <TextField fx:id="monthField" promptText="Month" styleClass="textfield" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label fx:id="monthError" styleClass="error-message" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            
+            <Label styleClass="label" text="Year:" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+            <TextField fx:id="yearField" promptText="Year" styleClass="textfield" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label fx:id="yearError" styleClass="error-message" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label fx:id="dateError" styleClass="error-message" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+
+          
+            <Label styleClass="label" text="Address:" GridPane.columnIndex="0" GridPane.rowIndex="12" />
+            <TextField fx:id="addressField" promptText="Enter your address" styleClass="textfield" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <Label fx:id="addressError" styleClass="error-message" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+
+           
+            <Label styleClass="label" text="Gender:" GridPane.columnIndex="0" GridPane.rowIndex="14" />
+            <ComboBox fx:id="genderComboBox" styleClass="combobox" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+        </GridPane>
+
+      
+        <HBox alignment="CENTER" spacing="10">
+            <Button fx:id="signUpButton" onAction="#signUpbtn" styleClass="primary-button" text="Sign Up" />
+        </HBox>
+
+    
+        <HBox alignment="CENTER" spacing="5">
+            <Label text="Already have an account?" />
+            <Hyperlink fx:id="loginLink" text="Log in" onAction = "#loginCLick" />
+        </HBox>
+    </VBox>
+
+</AnchorPane>
